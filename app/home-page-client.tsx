@@ -16,7 +16,7 @@ const threatLevelColors = {
   Slight: "bg-yellow-100 text-yellow-800 border-yellow-200",
   Enhanced: "bg-orange-100 text-orange-800 border-orange-200",
   Moderate: "bg-red-100 text-red-800 border-red-200",
-  "High Risk": "bg-purple-100 text-purple-800 border-purple-200",
+  "High": "bg-purple-100 text-purple-800 border-purple-200",
 }
 
 const threatLevelColorsDark = {
@@ -24,7 +24,7 @@ const threatLevelColorsDark = {
   Slight: "bg-yellow-900 text-yellow-200 border-yellow-700",
   Enhanced: "bg-orange-900 text-orange-200 border-orange-700",
   Moderate: "bg-red-900 text-red-200 border-red-700",
-  "High Risk": "bg-purple-900 text-purple-200 border-purple-700",
+  "High": "bg-purple-900 text-purple-200 border-purple-700",
 }
 
 const threatLevelTextColors = {
@@ -32,7 +32,7 @@ const threatLevelTextColors = {
   Slight: "text-yellow-800",
   Enhanced: "text-orange-800",
   Moderate: "text-red-800",
-  "High Risk": "text-purple-800",
+  "High": "text-purple-800",
 };
 
 const threatLevelTextColorsDark = {
@@ -40,7 +40,7 @@ const threatLevelTextColorsDark = {
   Slight: "text-yellow-200",
   Enhanced: "text-orange-200",
   Moderate: "text-red-200",
-  "High Risk": "text-purple-200",
+  "High": "text-purple-200",
 };
 
 const threatLevelHoverColors = {
@@ -48,7 +48,7 @@ const threatLevelHoverColors = {
   Slight: "hover:border-yellow-800",
   Enhanced: "hover:border-orange-800",
   Moderate: "hover:border-red-800",
-  "High Risk": "hover:border-purple-800",
+  "High": "hover:border-purple-800",
 };
 
 const threatLevelHoverColorsDark = {
@@ -56,7 +56,7 @@ const threatLevelHoverColorsDark = {
   Slight: "hover:border-yellow-200",
   Enhanced: "hover:border-orange-200",
   Moderate: "hover:border-red-200",
-  "High Risk": "hover:border-purple-200",
+  "High": "hover:border-purple-200",
 };
 
 export default function HomePageClient({ todaysForecast, previousForecasts }: { todaysForecast: Forecast | null, previousForecasts: Forecast[] }) {

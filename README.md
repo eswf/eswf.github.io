@@ -20,7 +20,7 @@ Each forecast is stored as a JSON file in `/data/forecasts/` with the filename f
 {
   "name": "Forecast Name",
   "period": "Date range description",
-  "threatLevel": "Marginal|Slight|Enhanced|Moderate|High Risk",
+  "threatLevel": "Marginal|Slight|Enhanced|Moderate|High",
   "mapImage": "/path/to/image.jpg",
   "text": "Detailed forecast text with \\n for line breaks"
 }
@@ -74,4 +74,4 @@ Visit `http://localhost:3000` to view the site locally.
 - **Slight**: Yellow - Low threat  
 - **Enhanced**: Orange - Moderate threat
 - **Moderate**: Red - High threat
-- **High Risk**: Purple - Extreme threat
+- **High**: Purple - Extreme threat

@@ -14,7 +14,7 @@ const threatLevelTextColors = {
   Slight: "text-yellow-900 dark:text-yellow-100",
   Enhanced: "text-orange-900 dark:text-orange-100",
   Moderate: "text-red-900 dark:text-red-100",
-  "High Risk": "text-purple-900 dark:text-purple-100",
+  "High": "text-purple-900 dark:text-purple-100",
 }
 
 
@@ -24,7 +24,7 @@ const threatLevelColors = {
   Slight: "bg-yellow-100 text-yellow-900 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-100 dark:border-yellow-700",
   Enhanced: "bg-orange-100 text-orange-900 border-orange-200 dark:bg-orange-900 dark:text-orange-100 dark:border-orange-700",
   Moderate: "bg-red-100 text-red-900 border-red-200 dark:bg-red-900 dark:text-red-100 dark:border-red-700",
-  "High Risk": "bg-purple-100 text-purple-900 border-purple-200 dark:bg-purple-900 dark:text-purple-100 dark:border-purple-700",
+  "High": "bg-purple-100 text-purple-900 border-purple-200 dark:bg-purple-900 dark:text-purple-100 dark:border-purple-700",
 }
 
 interface PageProps {
