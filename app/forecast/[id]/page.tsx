@@ -8,6 +8,15 @@ import { getAllForecasts, getForecastById } from "@/lib/forecasts"
 import { notFound } from "next/navigation"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 
+const threatLevelTextColors = {
+  Marginal: "text-green-900 dark:text-green-100",
+  Slight: "text-yellow-900 dark:text-yellow-100",
+  Enhanced: "text-orange-900 dark:text-orange-100",
+  Moderate: "text-red-900 dark:text-red-100",
+  "High Risk": "text-purple-900 dark:text-purple-100",
+}
+
+
 // Use semantic Tailwind classes instead of hardcoded colors
 const threatLevelColors = {
   Marginal: "bg-green-100 text-green-900 border-green-200 dark:bg-green-900 dark:text-green-100 dark:border-green-700",
@@ -38,7 +47,7 @@ export default async function ForecastPage({ params }: PageProps) {
         {/* Navigation */}
         <div className="mb-6">
           <Link href="/">
-            <Button variant="outline" className="mb-4 bg-transparent transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-800">
+            <Button variant="outline" className="transition-colors duration-300">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back
             </Button>
@@ -50,7 +59,9 @@ export default async function ForecastPage({ params }: PageProps) {
           <CardHeader>
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
               <div className="flex-1">
-                <CardTitle className="text-3xl mb-2">{forecast.name}</CardTitle>
+                <CardTitle className={`text-3xl font-bold mb-2 ${threatLevelTextColors[forecast.threatLevel as keyof typeof threatLevelTextColors]}`}>
+                  {forecast.name}
+                </CardTitle>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
@@ -62,6 +73,7 @@ export default async function ForecastPage({ params }: PageProps) {
                   </div>
                 </div>
               </div>
+
               <Badge
                 className={`${threatLevelColors[forecast.threatLevel as keyof typeof threatLevelColors]} 
                     text-lg px-4 py-2 

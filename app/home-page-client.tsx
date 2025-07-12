@@ -26,6 +26,38 @@ const threatLevelColorsDark = {
   "High Risk": "bg-purple-900 text-purple-200 border-purple-700",
 }
 
+const threatLevelTextColors = {
+  Marginal: "text-green-800",
+  Slight: "text-yellow-800",
+  Enhanced: "text-orange-800",
+  Moderate: "text-red-800",
+  "High Risk": "text-purple-800",
+};
+
+const threatLevelTextColorsDark = {
+  Marginal: "text-green-200",
+  Slight: "text-yellow-200",
+  Enhanced: "text-orange-200",
+  Moderate: "text-red-200",
+  "High Risk": "text-purple-200",
+};
+
+const threatLevelHoverColors = {
+  Marginal: "hover:border-green-800",
+  Slight: "hover:border-yellow-800",
+  Enhanced: "hover:border-orange-800",
+  Moderate: "hover:border-red-800",
+  "High Risk": "hover:border-purple-800",
+};
+
+const threatLevelHoverColorsDark = {
+  Marginal: "hover:border-green-200",
+  Slight: "hover:border-yellow-200",
+  Enhanced: "hover:border-orange-200",
+  Moderate: "hover:border-red-200",
+  "High Risk": "hover:border-purple-200",
+};
+
 export default function HomePageClient({ todaysForecast, previousForecasts }: { todaysForecast: Forecast | null, previousForecasts: Forecast[] }) {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
@@ -36,6 +68,8 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
   }
 
   const colors = theme === 'dark' ? threatLevelColorsDark : threatLevelColors
+  const textColors = theme === "dark" ? threatLevelTextColorsDark : threatLevelTextColors;
+  const hoverColors = theme === "dark" ? threatLevelHoverColorsDark : threatLevelHoverColors;
 
   return (
     <div className="min-h-screen bg-background animate-fadeAndOpacity">
@@ -45,8 +79,8 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-foreground mb-2">European Severe Weather Forecast</h1>
-          <p className="text-1x1 text-muted-foreground">Professional weather forecasting and threat assessment</p>
+          <h1 className="text-5xl font-bold text-primary mb-2">European Severe Weather Forecast</h1>
+          <p className="text-1x1 text-foreground">Professional weather forecasting and threat assessment</p>
         </div>
 
         {/* Today's Forecast */}
@@ -58,11 +92,11 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
 
           {todaysForecast ? (
             <Link href={`/forecast/${todaysForecast.id}`}>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-violet-600 transition-colors duration-250">
+              <Card className={`hover:shadow-lg transition-shadow cursor-pointer border-2 transition-colors duration-250 ${hoverColors[todaysForecast.threatLevel as keyof typeof hoverColors]}`}>
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div> 
-                      <CardTitle className="text-x1 font-bold text-foreground">{todaysForecast.name}</CardTitle>
+                      <CardTitle className={`text-xl font-bold ${textColors[todaysForecast.threatLevel as keyof typeof textColors]}`}>{todaysForecast.name}</CardTitle>
                       <p className="text-muted-foreground mt-2 flex items-center gap-1">
                         <Clock className="h-4 w-4" />
                         {todaysForecast.period}
@@ -105,11 +139,11 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {previousForecasts.map((forecast) => (
                 <Link key={forecast.id} href={`/forecast/${forecast.id}`}>
-                  <Card className="hover:shadow-md transition-shadow cursor-pointer h-full hover:border-violet-800 transition-colors duration-250">
+                  <Card className={`hover:shadow-lg transition-shadow cursor-pointer border-2 transition-colors duration-250 ${hoverColors[forecast.threatLevel as keyof typeof hoverColors]}`}>
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <CardTitle className="text-lg text-foreground line-clamp-2">{forecast.name}</CardTitle>
+                          <CardTitle className="font-bold text-lg text-foreground line-clamp-2">{forecast.name}</CardTitle>
                           <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
                             {forecast.id}

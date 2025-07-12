@@ -13,26 +13,39 @@ body {
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+:root {
+  --darkerText: 150 15% 30%;        /* Darker text but still soft */
+  --text: 150 10% 25%;              /* Main text, dark but not harsh */
+  --foreground: 150 10% 25%;        /* Same as text for UI consistency */
+  
+  --background: 150 100% 96%;       /* Fixed very light background */
+  
+  --box: 153 100% 95%;               /* Very light subtle box background */
+  --card: 153 100% 95%;        /* Slightly lighter card background */
+  --card-foreground: 150 10% 25%;   /* Text on card - dark */
+  
+  --popover: 150 60% 97%;           /* Light popover background */
+  --popover-foreground: 150 10% 25%;/* Dark text on popover */
+  
+  --primary: 160 90% 45%;           /* Fixed primary color */
+  --primary-foreground: 0 0% 100%;  /* White text on primary */
+
+  --secondary: 160 70% 70%;         /* Softer secondary, lighter */
+  --secondary-foreground: 150 10% 25%; /* Dark text on secondary */
+
+  --muted: 150 30% 80%;             /* Muted, light greenish tone */
+  --muted-foreground: 150 10% 50%; /* Medium dark muted text */
+  
+  --accent: 160 90% 45%;            /* Same as primary */
+  --accent-foreground: 0 0% 100%;   /* White text on accent */
+  
+  --destructive: 0 80% 60%;         /* Bright red */
+  --destructive-foreground: 0 0% 100%; /* White text on red */
+  
+  --border: 0 0% 92%;            /* Light border */
+  --input: 150 60% 97%;             /* Input background - very light */
+  --ring: 160 90% 75%;              /* Highlight ring */
+
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -49,39 +62,35 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  --darkerText: 0 0% 39%;
+  --text: 75 100% 92%;
+  --foreground: 75 100% 92%;
+  --background: 150 60% 3%;
+  --box: 175 85% 3%;
+  --card: 175 85% 5%;
+  --card-foreground: 75 100% 92%;
+  --popover: 175 85% 5%;
+  --popover-foreground: 75 100% 92%;
+  
+  --primary: 160 90% 59%;
+  --primary-foreground: 0 0% 9%;
+  
+  --secondary: 160 90% 59%;
+  --secondary-foreground: 0 0% 9%;
+  
+  --muted: 160 90% 40%;
+  --muted-foreground: 0 0% 63%;
+  
+  --accent: 160 90% 59%;
+  --accent-foreground: 0 0% 9%;
+  
+  --destructive: 0 85% 60%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 150 60% 10%;
+  --input: 175 85% 5%;
+  --ring: 160 90% 70%;
+}
 }
 
 @layer base {
