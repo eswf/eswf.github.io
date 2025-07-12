@@ -7,6 +7,7 @@ import Image from "next/image"
 import { getAllForecasts, getForecastById } from "@/lib/forecasts"
 import { notFound } from "next/navigation"
 import { ModeToggle } from "@/components/ui/theme-toggle"
+import FadeLink from "@/components/FadeLink"
 
 const threatLevelTextColors = {
   Marginal: "text-green-900 dark:text-green-100",
@@ -46,12 +47,12 @@ export default async function ForecastPage({ params }: PageProps) {
       <div className="container mx-auto px-4 py-8">
         {/* Navigation */}
         <div className="mb-6">
-          <Link href="/">
+          <FadeLink href="/">
             <Button variant="outline" className="transition-colors duration-300">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back
             </Button>
-          </Link>
+          </FadeLink>
         </div>
 
         {/* Forecast Header */}

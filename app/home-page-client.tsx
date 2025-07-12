@@ -8,6 +8,7 @@ import { useTheme } from "next-themes"
 import type { Forecast } from "@/lib/forecasts"
 import { useEffect, useState } from "react"
 import { ModeToggle } from "@/components/ui/theme-toggle"
+import FadeLink from "@/components/FadeLink"
 
 
 const threatLevelColors = {
@@ -91,7 +92,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
           </h2>
 
           {todaysForecast ? (
-            <Link href={`/forecast/${todaysForecast.id}`}>
+            <FadeLink href={`/forecast/${todaysForecast.id}`}>
               <Card className={`hover:shadow-lg transition-shadow cursor-pointer border-2 transition-colors duration-250 ${hoverColors[todaysForecast.threatLevel as keyof typeof hoverColors]}`}>
                 <CardHeader>
                   <div className="flex justify-between items-start">
@@ -119,7 +120,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
                     </div>
                 </CardContent>
               </Card>
-            </Link>
+            </FadeLink>
           ) : (
             <Card className="border-dashed border-2 border-muted">
               <CardContent className="text-center py-12">
@@ -138,7 +139,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
           {previousForecasts.length > 0 ? (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {previousForecasts.map((forecast) => (
-                <Link key={forecast.id} href={`/forecast/${forecast.id}`}>
+                <FadeLink key={forecast.id} href={`/forecast/${forecast.id}`}>
                   <Card className={`hover:shadow-lg transition-shadow cursor-pointer border-2 transition-colors duration-250 ${hoverColors[forecast.threatLevel as keyof typeof hoverColors]}`}>
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-start">
@@ -167,7 +168,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts }: { 
                       </div>
                     </CardContent>
                   </Card>
-                </Link>
+                </FadeLink>
               ))}
             </div>
           ) : (

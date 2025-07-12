@@ -12,9 +12,9 @@ export default function NotFound() {
             <AlertTriangle className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Forecast Not Found</h1>
             <p className="text-gray-600 mb-6">The requested forecast could not be found.</p>
-            <Link href="/">
+            <FadeLink href="/">
               <Button>Return Home</Button>
-            </Link>
+            </FadeLink>
           </CardContent>
         </Card>
       </div>
