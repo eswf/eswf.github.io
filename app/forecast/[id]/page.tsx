@@ -1,18 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Calendar, MapPin, AlertTriangle } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, AlertTriangle } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { getAllForecasts, getForecastById } from "@/lib/forecasts"
 import { notFound } from "next/navigation"
+import { ModeToggle } from "@/components/ui/theme-toggle"
 
+// Use semantic Tailwind classes instead of hardcoded colors
 const threatLevelColors = {
-  Marginal: "bg-green-100 text-green-800 border-green-200",
-  Slight: "bg-yellow-100 text-yellow-800 border-yellow-200",
-  Enhanced: "bg-orange-100 text-orange-800 border-orange-200",
-  Moderate: "bg-red-100 text-red-800 border-red-200",
-  "High Risk": "bg-purple-100 text-purple-800 border-purple-200",
+  Marginal: "bg-green-100 text-green-900 border-green-200 dark:bg-green-900 dark:text-green-100 dark:border-green-700",
+  Slight: "bg-yellow-100 text-yellow-900 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-100 dark:border-yellow-700",
+  Enhanced: "bg-orange-100 text-orange-900 border-orange-200 dark:bg-orange-900 dark:text-orange-100 dark:border-orange-700",
+  Moderate: "bg-red-100 text-red-900 border-red-200 dark:bg-red-900 dark:text-red-100 dark:border-red-700",
+  "High Risk": "bg-purple-100 text-purple-900 border-purple-200 dark:bg-purple-900 dark:text-purple-100 dark:border-purple-700",
 }
 
 interface PageProps {
@@ -28,14 +30,17 @@ export default async function ForecastPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-background text-foreground motion-safe:animate-fadeAndOpacity">
+      <div className="absolute top-4 right-4">
+          <ModeToggle />
+      </div>
       <div className="container mx-auto px-4 py-8">
         {/* Navigation */}
         <div className="mb-6">
           <Link href="/">
-            <Button variant="outline" className="mb-4 bg-transparent">
+            <Button variant="outline" className="mb-4 bg-transparent transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-800">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
+              Back
             </Button>
           </Link>
         </div>
@@ -45,20 +50,23 @@ export default async function ForecastPage({ params }: PageProps) {
           <CardHeader>
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
               <div className="flex-1">
-                <CardTitle className="text-3xl text-gray-900 mb-2">{forecast.name}</CardTitle>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-gray-600">
+                <CardTitle className="text-3xl mb-2">{forecast.name}</CardTitle>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
                     <span>{forecast.id}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <MapPin className="h-4 w-4" />
+                    <Clock className="h-4 w-4" />
                     <span>{forecast.period}</span>
                   </div>
                 </div>
               </div>
               <Badge
-                className={`${threatLevelColors[forecast.threatLevel as keyof typeof threatLevelColors]} text-lg px-4 py-2`}
+                className={`${threatLevelColors[forecast.threatLevel as keyof typeof threatLevelColors]} 
+                    text-lg px-4 py-2 
+                    transition-shadow duration-300 ease-in-out 
+                    hover:shadow-lg`}
               >
                 <AlertTriangle className="h-4 w-4 mr-2" />
                 {forecast.threatLevel}
@@ -92,7 +100,7 @@ export default async function ForecastPage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             <div
-              className="prose prose-gray max-w-none"
+              className="prose dark:prose-invert max-w-none"
               dangerouslySetInnerHTML={{ __html: forecast.text.replace(/\n/g, "<br>") }}
             />
           </CardContent>

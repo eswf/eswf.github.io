@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 // all in fixtures is set to tailwind v3 as interims solutions
 
 const config: Config = {
-    darkMode: ["class"],
+	darkMode: 'class',
     content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -78,6 +78,14 @@ const config: Config = {
   					height: 'var(--radix-accordion-content-height)'
   				}
   			},
+			fadeIn: {
+				'0%': { opacity: "0", transform: 'translateY(15px)' },
+				'100%': { transform: 'translateY(0)' }
+			},
+			opacityIn: {
+				'0%': { opacity: "0" },
+				'100%': { opacity: "1" }
+			},
   			'accordion-up': {
   				from: {
   					height: 'var(--radix-accordion-content-height)'
@@ -89,7 +97,10 @@ const config: Config = {
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+			fadeIn: 'fadeIn .6s ease-out forwards',
+			opacityIn: 'opacityIn 1s ease-out forwards',
+			fadeAndOpacity: 'fadeIn .6s ease-out forwards, opacityIn 1s ease-out forwards'
   		}
   	}
   },
