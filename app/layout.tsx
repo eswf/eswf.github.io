@@ -7,10 +7,17 @@ import PageTransitionProvider from "./PageTransitionProvider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Weather Forecast Center",
+  title: "European Severe Weather Forecast",
   description: "Professional weather forecasting and threat assessment",
   generator: 'v0.dev',
+  icons: {
+    icon: "/favicon-32x32.png",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 }
+
 
 export default function RootLayout({
   children,
