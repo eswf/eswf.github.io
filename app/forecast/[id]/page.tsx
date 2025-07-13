@@ -10,11 +10,11 @@ import FadeLink from "@/components/FadeLink"
 import ReactMarkdown from "react-markdown"
 
 const threatLevelTextColors = {
-  Marginal: "text-green-900 dark:text-green-100",
-  Slight: "text-yellow-900 dark:text-yellow-100",
-  Enhanced: "text-orange-900 dark:text-orange-100",
-  Moderate: "text-red-900 dark:text-red-100",
-  "High": "text-purple-900 dark:text-purple-100",
+  Marginal: "text-green-500 dark:text-green-1100",
+  Slight: "text-yellow-500 dark:text-yellow-1100",
+  Enhanced: "text-orange-500 dark:text-orange-1100",
+  Moderate: "text-red-500 dark:text-red-1100",
+  "High": "text-purple-500 dark:text-purple-1100",
 }
 
 
@@ -91,7 +91,7 @@ export default async function ForecastPage({ params }: PageProps) {
         {/* Forecast Map */}
         <Card className="mb-8">
           <CardHeader>
-            <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <h2 className="text-2xl font-bold dark:text-white text-black flex items-center gap-2">
               <Map className="h-6 w-6" />
               Forecast Map
             </h2>
@@ -112,19 +112,24 @@ export default async function ForecastPage({ params }: PageProps) {
         {/* Forecast Text */}
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <h2 className="text-2xl dark:text-white font-bold text-black flex items-center gap-2">
               <ReceiptText className="h-6 w-6" />
               Forecast Details
             </h2>
           </CardHeader>
           <CardContent>
-            <div className="prose dark:prose-invert max-w-none">
+            <div className="prose dark:prose-invert max-w-none text-muted-white">
               <ReactMarkdown>
                 {forecast.text}
               </ReactMarkdown>
             </div>
           </CardContent>
         </Card>
+        <br />
+        <p className="text-muted-foreground flex items-center gap-2">
+          <AlertTriangle className="h-6 w-6" />
+          Areas shown outside Central Europe are only rough estimates and may not accurately reflect the true severe weather risk.
+        </p>
       </div>
     </div>
   )

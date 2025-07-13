@@ -28,20 +28,12 @@ const threatLevelColorsDark = {
 }
 
 const threatLevelTextColors = {
-  Marginal: "text-green-800",
-  Slight: "text-yellow-800",
-  Enhanced: "text-orange-800",
-  Moderate: "text-red-800",
-  "High": "text-purple-800",
-};
-
-const threatLevelTextColorsDark = {
-  Marginal: "text-green-200",
-  Slight: "text-yellow-200",
-  Enhanced: "text-orange-200",
-  Moderate: "text-red-200",
-  "High": "text-purple-200",
-};
+  Marginal: "text-green-500 dark:text-green-1100",
+  Slight: "text-yellow-500 dark:text-yellow-1100",
+  Enhanced: "text-orange-500 dark:text-orange-1100",
+  Moderate: "text-red-500 dark:text-red-1100",
+  "High": "text-purple-500 dark:text-purple-1100",
+}
 
 const threatLevelHoverColors = {
   Marginal: "hover:border-green-400",
@@ -69,7 +61,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
   }
 
   const colors = theme === 'dark' ? threatLevelColorsDark : threatLevelColors
-  const textColors = theme === "dark" ? threatLevelTextColorsDark : threatLevelTextColors;
+  const textColors = threatLevelTextColors;
   const hoverColors = theme === "dark" ? threatLevelHoverColorsDark : threatLevelHoverColors;
 
   return (
@@ -80,13 +72,17 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
+          <p className="text-muted-foreground">
+            All provided weather outlooks are for informational purposes only. For official warnings and updates, please follow your local meteorological agency or government weather service.
+          </p>
+          <br />
           <h1 className="text-5xl font-bold text-primary mb-2">European Severe Weather Forecast</h1>
           <p className="text-1x1 text-foreground">Amateur weather forecasting and threat assessment</p>
         </div>
 
         {/* Today's Forecast */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <h2 className="text-2xl font-bold dark:text-white text-black mb-6 flex items-center gap-2">
             <Calendar className="h-6 w-6" />
             Today's Forecast
           </h2>
@@ -122,7 +118,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
               </Card>
             </FadeLink>
           ) : (
-            <Card className="border-dashed border-2 border-muted">
+            <Card className="border-dashed border-2 border-primary">
               <CardContent className="text-center py-12">
                 <AlertTriangle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-foreground mb-2">No forecast available for today</h3>
@@ -130,12 +126,17 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
               </CardContent>
             </Card>
           )}
+          <br />
+          <p className="text-muted-foreground flex items-center gap-2">
+            <AlertTriangle className="h-6 w-6" />
+            We are unable to provide daily updates or services. Please refer to official sources for the most current and reliable weather information.
+          </p>
         </div>
 
         {/* Forecast Future */}
         <div>
           {futureForecasts.length > 0 ? (
-            <><h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <><h2 className="text-2xl font-bold dark:text-white text-black mb-6 flex items-center gap-2">
               <Gem className="h-6 w-6" />
               Upcoming Forecasts
             </h2>
@@ -146,7 +147,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <CardTitle className="font-bold text-lg text-foreground line-clamp-2">{forecast.name}</CardTitle>
+                          <CardTitle className={`text-xl ${textColors[forecast.threatLevel as keyof typeof textColors]}`}>{forecast.name}</CardTitle>
                           <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
                             {forecast.id}
@@ -181,7 +182,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
 
         {/* Forecast History */}
         <div>
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <h2 className="text-2xl font-bold dark:text-white text-black mb-6 flex items-center gap-2">
             <History className="h-6 w-6" />
             Forecast History
           </h2>
@@ -194,7 +195,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <CardTitle className="font-bold text-lg text-foreground line-clamp-2">{forecast.name}</CardTitle>
+                          <CardTitle className={`text-xl ${textColors[forecast.threatLevel as keyof typeof textColors]}`}>{forecast.name}</CardTitle>
                           <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
                             {forecast.id}
