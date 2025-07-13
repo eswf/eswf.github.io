@@ -8,7 +8,13 @@ import type { Forecast } from "@/lib/forecasts"
 import { useEffect, useState } from "react"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 import FadeLink from "@/components/FadeLink"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 
 const threatLevelColors = {
@@ -54,6 +60,7 @@ const threatLevelHoverColorsDark = {
 export default function HomePageClient({ todaysForecast, previousForecasts, futureForecasts }: { todaysForecast: Forecast | null, previousForecasts: Forecast[], futureForecasts: Forecast[] }) {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
+  const [selectedThreat, setSelectedThreat] = useState<string>("All")
   useEffect(() => setMounted(true), [])
 
   if (!mounted) {
@@ -181,15 +188,34 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
         <br/>
 
         {/* Forecast History */}
+        
         <div>
-          <h2 className="text-2xl font-bold dark:text-white text-black mb-6 flex items-center gap-2">
-            <History className="h-6 w-6" />
-            Forecast History
-          </h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold dark:text-white text-black flex items-center gap-2">
+              <History className="h-6 w-6" />
+              Forecast History
+            </h2>
+
+            <Select value={selectedThreat} onValueChange={setSelectedThreat}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Filter by threat level" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="All">All</SelectItem>
+                <SelectItem value="Marginal">Marginal</SelectItem>
+                <SelectItem value="Slight">Slight</SelectItem>
+                <SelectItem value="Enhanced">Enhanced</SelectItem>
+                <SelectItem value="Moderate">Moderate</SelectItem>
+                <SelectItem value="High">High</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
           {previousForecasts.length > 0 ? (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {previousForecasts.map((forecast) => (
+              {previousForecasts
+                .filter((forecast) => selectedThreat === "All" || forecast.threatLevel === selectedThreat)
+                .map((forecast) => (
                 <FadeLink key={forecast.id} href={`/forecast/${forecast.id}`}>
                   <Card className={`hover:shadow-lg transition-shadow cursor-pointer border-2 transition-colors duration-250 ${hoverColors[forecast.threatLevel as keyof typeof hoverColors]}`}>
                     <CardHeader className="pb-3">
@@ -223,7 +249,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
               ))}
             </div>
           ) : (
-            <Card className="border-dashed border-2 border-muted">
+            <Card className="border-dashed border-2 border-primary">
               <CardContent className="text-center py-8">
                 <p className="text-muted-foreground">No previous forecasts available.</p>
               </CardContent>
