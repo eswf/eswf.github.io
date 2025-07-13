@@ -1,13 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Calendar, Clock, AlertTriangle } from "lucide-react"
-import Link from "next/link"
+import { ArrowLeft, Calendar, Clock, AlertTriangle, Map, MapPin, ReceiptText } from "lucide-react"
 import Image from "next/image"
 import { getAllForecasts, getForecastById } from "@/lib/forecasts"
 import { notFound } from "next/navigation"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 import FadeLink from "@/components/FadeLink"
+import ReactMarkdown from "react-markdown"
 
 const threatLevelTextColors = {
   Marginal: "text-green-900 dark:text-green-100",
@@ -91,7 +91,10 @@ export default async function ForecastPage({ params }: PageProps) {
         {/* Forecast Map */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-xl">Forecast Map</CardTitle>
+            <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <Map className="h-6 w-6" />
+              Forecast Map
+            </h2>
           </CardHeader>
           <CardContent>
             <div className="aspect-video relative rounded-lg overflow-hidden">
@@ -109,13 +112,17 @@ export default async function ForecastPage({ params }: PageProps) {
         {/* Forecast Text */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">Forecast Details</CardTitle>
+            <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <ReceiptText className="h-6 w-6" />
+              Forecast Details
+            </h2>
           </CardHeader>
           <CardContent>
-            <div
-              className="prose dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: forecast.text.replace(/\n/g, "<br>") }}
-            />
+            <div className="prose dark:prose-invert max-w-none">
+              <ReactMarkdown>
+                {forecast.text}
+              </ReactMarkdown>
+            </div>
           </CardContent>
         </Card>
       </div>
