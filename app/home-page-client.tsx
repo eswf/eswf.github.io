@@ -132,9 +132,9 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
           )}
         </div>
 
-        {/* Forecast Future */}
+        {/* Forecast Upcoming */}
         <div>
-          {futureForecasts.length > 0 ? (
+          {upcomingForecasts.length > 0 ? (
             <><h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
               <Gem className="h-6 w-6" />
               Future Forecasts
