@@ -81,7 +81,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-5xl font-bold text-primary mb-2">European Severe Weather Forecast</h1>
-          <p className="text-1x1 text-foreground">Professional weather forecasting and threat assessment</p>
+          <p className="text-1x1 text-foreground">Amateur weather forecasting and threat assessment</p>
         </div>
 
         {/* Today's Forecast */}
@@ -137,7 +137,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
           {futureForecasts.length > 0 ? (
             <><h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
               <Gem className="h-6 w-6" />
-              Future Forecasts
+              Upcoming Forecasts
             </h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {futureForecasts.map((forecast) => (

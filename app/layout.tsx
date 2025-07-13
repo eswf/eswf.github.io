@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "ESWF",
-  description: "Professional weather forecasting and threat assessment",
+  description: "Amateur weather forecasting and threat assessment",
   generator: 'v0.dev',
   icons: {
     icon: "/favicon-32x32.png",
