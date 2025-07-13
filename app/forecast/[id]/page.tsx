@@ -75,15 +75,17 @@ export default async function ForecastPage({ params }: PageProps) {
                 </div>
               </div>
 
-              <Badge
-                className={`${threatLevelColors[forecast.threatLevel as keyof typeof threatLevelColors]} 
-                    text-lg px-4 py-2 
-                    transition-shadow duration-300 ease-in-out 
-                    hover:shadow-lg`}
-              >
-                <AlertTriangle className="h-4 w-4 mr-2" />
-                {forecast.threatLevel}
-              </Badge>
+              <FadeLink href={`/?threatLevel=${forecast.threatLevel}`}>
+                <Badge
+                  className={`${threatLevelColors[forecast.threatLevel as keyof typeof threatLevelColors]} 
+      text-lg px-4 py-2 cursor-pointer 
+      transition-shadow duration-300 ease-in-out 
+      hover:shadow-lg hover:brightness-105`}
+                >
+                  <AlertTriangle className="h-4 w-4 mr-2" />
+                  {forecast.threatLevel}
+                </Badge>
+              </FadeLink>
             </div>
           </CardHeader>
         </Card>

@@ -5,9 +5,10 @@ import { Calendar, AlertTriangle, Clock, Gem, History } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import type { Forecast } from "@/lib/forecasts"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 import FadeLink from "@/components/FadeLink"
+import { useSearchParams } from "next/navigation"
 import {
   Select,
   SelectContent,
@@ -57,11 +58,33 @@ const threatLevelHoverColorsDark = {
   "High": "hover:border-purple-800",
 };
 
+
 export default function HomePageClient({ todaysForecast, previousForecasts, futureForecasts }: { todaysForecast: Forecast | null, previousForecasts: Forecast[], futureForecasts: Forecast[] }) {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
-  const [selectedThreat, setSelectedThreat] = useState<string>("All")
-  useEffect(() => setMounted(true), [])
+  const searchParams = useSearchParams()
+  const urlThreatLevel = searchParams.get("threatLevel") || "All"
+  const [selectedThreat, setSelectedThreat] = useState<string>(urlThreatLevel)
+  const forecastHistoryRef = useRef<HTMLDivElement | null>(null)
+  const hasScrolledRef = useRef(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (
+      mounted &&
+      urlThreatLevel &&
+      urlThreatLevel !== "All" && // <-- add this condition
+      forecastHistoryRef.current &&
+      !hasScrolledRef.current
+    ) {
+      hasScrolledRef.current = true
+      setTimeout(() => {
+        forecastHistoryRef.current?.scrollIntoView({ behavior: "smooth" })
+      }, 300)
+    }
+  }, [mounted, urlThreatLevel])
 
   if (!mounted) {
     return null
@@ -189,7 +212,7 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
 
         {/* Forecast History */}
         
-        <div>
+        <div ref={forecastHistoryRef}>
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold dark:text-white text-black flex items-center gap-2">
               <History className="h-6 w-6" />
