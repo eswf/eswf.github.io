@@ -7,7 +7,7 @@ import PageTransitionProvider from "./PageTransitionProvider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "European Severe Weather Forecast",
+  title: "ESWF",
   description: "Professional weather forecasting and threat assessment",
   generator: 'v0.dev',
   icons: {
