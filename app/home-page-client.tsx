@@ -96,9 +96,6 @@ export default function HomePageClient({ todaysForecast, previousForecasts, futu
 
   return (
     <div className="min-h-screen bg-background animate-fadeAndOpacity">
-      <div className="absolute top-4 right-4">
-          <ModeToggle />
-      </div>
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">

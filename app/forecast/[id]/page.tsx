@@ -1,13 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ArrowLeft, Calendar, Clock, AlertTriangle, Map, MapPin, ReceiptText } from "lucide-react"
+import { Calendar, Clock, AlertTriangle, Map, MapPin, ReceiptText } from "lucide-react"
 import Image from "next/image"
 import { getAllForecasts, getForecastById } from "@/lib/forecasts"
 import { notFound } from "next/navigation"
-import { ModeToggle } from "@/components/ui/theme-toggle"
-import FadeLink from "@/components/FadeLink"
 import ReactMarkdown from "react-markdown"
+import FadeLink from "@/components/FadeLink"
 
 const threatLevelTextColors = {
   Marginal: "text-green-500 dark:text-green-1100",
@@ -41,20 +39,7 @@ export default async function ForecastPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground motion-safe:animate-fadeAndOpacity">
-      <div className="absolute top-4 right-4">
-          <ModeToggle />
-      </div>
       <div className="container mx-auto px-4 py-8">
-        {/* Navigation */}
-        <div className="mb-6">
-          <FadeLink href="/">
-            <Button variant="outline" className="transition-colors duration-300">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back
-            </Button>
-          </FadeLink>
-        </div>
-
         {/* Forecast Header */}
         <Card className="mb-8">
           <CardHeader>

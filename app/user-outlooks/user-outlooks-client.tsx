@@ -23,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 
 const threatLevelColors = {
   Marginal: "bg-green-100 text-green-800 border-green-200",
@@ -112,9 +113,6 @@ export default function UserOutlooksClient({
 
   return (
     <div className="min-h-screen bg-background animate-fadeAndOpacity">
-      <div className="absolute top-4 right-4">
-        <ModeToggle />
-      </div>
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -124,11 +122,6 @@ export default function UserOutlooksClient({
           <br />
           <h1 className="text-5xl font-bold text-primary mb-2">User Submitted Outlooks</h1>
           <p className="text-1x1 text-foreground">Amateur weather forecasting and threat assessment</p>
-          <div className="flex justify-center gap-4 mt-4">
-            <FadeLink href="/">
-              <p className="text-lg text-primary hover:underline">Official Outlooks</p>
-            </FadeLink>
-          </div>
         </div>
 
         {/* Today’s Outlooks */}
