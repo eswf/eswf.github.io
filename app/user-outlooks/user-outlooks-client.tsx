@@ -5,8 +5,7 @@ import { Calendar, AlertTriangle, Clock, Gem, History, User } from "lucide-react
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import type { UserForecast } from "@/lib/forecasts"
-import { useEffect, useRef, useState } from "react"
-import { ModeToggle } from "@/components/ui/theme-toggle"
+import { useEffect, useRef, useState } from "react" 
 import FadeLink from "@/components/FadeLink"
 import {
   Carousel,
@@ -15,7 +14,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { useSearchParams } from "next/navigation"
 import {
   Select,
   SelectContent,
@@ -76,9 +74,20 @@ export default function UserOutlooksClient({
 }) {
   const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
-  const searchParams = useSearchParams()
-  const urlThreatLevel = searchParams.get("threatLevel") || "All"
-  const [selectedThreat, setSelectedThreat] = useState<string>(urlThreatLevel)
+
+  const [selectedThreat, setSelectedThreat] = useState<string>("All")
+
+  // Read query param from URL on the client only
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search)
+      const threatLevel = params.get("threatLevel")
+      if (threatLevel) {
+        setSelectedThreat(threatLevel)
+      }
+    }
+  }, [])
+
   const forecastHistoryRef = useRef<HTMLDivElement | null>(null)
   const hasScrolledRef = useRef(false)
 
@@ -89,8 +98,8 @@ export default function UserOutlooksClient({
   useEffect(() => {
     if (
       mounted &&
-      urlThreatLevel &&
-      urlThreatLevel !== "All" &&
+      selectedThreat &&
+      selectedThreat !== "All" &&
       forecastHistoryRef.current &&
       !hasScrolledRef.current
     ) {
@@ -99,7 +108,7 @@ export default function UserOutlooksClient({
         forecastHistoryRef.current?.scrollIntoView({ behavior: "smooth" })
       }, 300)
     }
-  }, [mounted, urlThreatLevel])
+  }, [mounted, selectedThreat])
 
   if (!mounted) return null
 
@@ -113,6 +122,7 @@ export default function UserOutlooksClient({
 
   return (
     <div className="min-h-screen bg-background animate-fadeAndOpacity">
+
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -120,8 +130,7 @@ export default function UserOutlooksClient({
             All provided weather outlooks are for informational purposes only. For official warnings and updates, please follow your local meteorological agency or government weather service.
           </p>
           <br />
-          <h1 className="text-5xl font-bold text-primary mb-2">User Submitted Outlooks</h1>
-          <p className="text-1x1 text-foreground">Amateur weather forecasting and threat assessment</p>
+          <h1 className="text-5xl font-bold text-primary mb-2">User Submitted Forecasts</h1>
         </div>
 
         {/* Today’s Outlooks */}

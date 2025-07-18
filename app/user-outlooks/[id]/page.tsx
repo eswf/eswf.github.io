@@ -61,7 +61,7 @@ export default async function UserOutlookPage({ params }: PageProps) {
                   <br></br>
                   <div className="flex items-center gap-1">
                     <User className="h-4 w-4" />
-                    Submited by: 
+                    Forecaster: 
                     <strong className="text-primary">{outlook.forecaster}</strong>
                   </div>
                 </div>

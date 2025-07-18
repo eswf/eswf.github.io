@@ -1,5 +1,6 @@
 import { getAllUserForecasts } from '@/lib/forecasts';
 import UserOutlooksClient from './user-outlooks-client';
+import { Suspense } from 'react';
 
 export default async function UserOutlooksPage() {
   const allForecasts = await getAllUserForecasts();
@@ -10,10 +11,12 @@ export default async function UserOutlooksPage() {
   const futureForecasts = allForecasts.filter((forecast) => forecast.date > today);
 
   return (
-    <UserOutlooksClient 
-      todaysForecasts={todaysForecasts}
-      previousForecasts={previousForecasts}
-      futureForecasts={futureForecasts}
-    />
+    <Suspense fallback={<div>Loading outlooks...</div>}>
+      <UserOutlooksClient
+        todaysForecasts={todaysForecasts}
+        previousForecasts={previousForecasts}
+        futureForecasts={futureForecasts}
+      />
+    </Suspense>
   );
 }

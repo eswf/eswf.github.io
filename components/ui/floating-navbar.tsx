@@ -64,7 +64,7 @@ export function FloatingNavbar() {
             size="sm"
             className="rounded-full hover:bg-muted flex-shrink-0 transition-colors duration-300 ease-in-out"
           >
-            User Outlooks
+            User Forecasts
           </Button>
         </FadeLink>
 
