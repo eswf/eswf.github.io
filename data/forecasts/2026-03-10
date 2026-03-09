@@ -1,0 +1,22 @@
+---
+name: Severe Weather Forecast
+period: March 10, 00:00 - March 11, 00:00 UTC
+threatLevel: Enhanced
+mapImage: /maps/2026-03-10.jpg
+---
+
+## Overview of the Situation
+
+A broad Marginal Risk (MRGL) covers parts of Germany and Czechia, though the probability of thunderstorms is very low across the entire region. Any convection that does develop will likely be isolated and randomly placed, with many locations seeing no storms at all. Model guidance generally favors showers rather than thunderstorms, especially across Czechia, where most models show little to no convective development. However, forecast soundings still suggest a small conditional chance that a thunderstorm could form if localized instability and lift briefly align. Overall, most areas will experience cloudy skies with scattered showers, and only very isolated lightning is possible.
+
+## Synopsis
+
+Soundings across the Marginal Risk area indicate weak instability, with CAPE generally ranging from near 0 up to roughly 200–400 J/kg at most, which is typically insufficient for widespread thunderstorm development. In Czechia, the sounding shows very limited surface-based instability, relatively cool mid-level temperatures, and a mostly moist vertical profile, which favors showers rather than deep convection. There is also little directional wind shear, meaning storm organization would be unlikely even if convection forms.
+
+Across central Germany, the environment is slightly more supportive but still marginal. The sounding suggests weak CAPE values around a few hundred J/kg, combined with modest lapse rates and light to moderate deep-layer shear (around 15–20 kt). These parameters may allow isolated low-topped convection to develop in the afternoon, though storms would likely remain short-lived and poorly organized.
+
+In northern Germany, instability is even weaker, with a cooler boundary layer and saturated profile, suggesting mainly stratiform rain showers. The lack of CAPE and weak lapse rates mean thunderstorms are unlikely, though a brief rumble of thunder cannot be completely ruled out if localized lift briefly steepens lapse rates.
+
+Meanwhile, southern Germany shows slightly better thermodynamics, with CAPE perhaps approaching 300–400 J/kg, and somewhat steeper low- to mid-level lapse rates. However, deep-layer shear remains weak, and moisture is fairly evenly distributed through the column, meaning any storms that develop would likely be low-topped pulse cells producing brief heavy rain and occasional lightning.
+
+Overall, the environment across the region is characterized by weak instability, modest lapse rates, and limited shear, which strongly favors isolated showers and only a very small chance of thunderstorms. If lightning occurs, it will likely be very localized and short-lived, consistent with the Marginal Risk classification.
